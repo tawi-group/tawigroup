@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 20%);
+  --muted: hsl(45, 23%, 94%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 20%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 20%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(158, 36%, 17%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(45, 23%, 94%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(43, 58%, 44%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(158, 36%, 17%);
+  --radius: 0.5rem;
+  
+  /* Custom Tawi Group colors */
+  --tawi-primary: hsl(158, 36%, 17%);
+  --tawi-accent: hsl(43, 58%, 44%);
+  --tawi-neutral: hsl(45, 23%, 94%);
+  --tawi-text: hsl(0, 0%, 20%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(158, 36%, 17%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(43, 58%, 44%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat;
+  }
+}
+
+@layer utilities {
+  .text-tawi-primary {
+    color: var(--tawi-primary);
+  }
+  
+  .text-tawi-accent {
+    color: var(--tawi-accent);
+  }
+  
+  .text-tawi-text {
+    color: var(--tawi-text);
+  }
+  
+  .bg-tawi-primary {
+    background-color: var(--tawi-primary);
+  }
+  
+  .bg-tawi-accent {
+    background-color: var(--tawi-accent);
+  }
+  
+  .bg-tawi-neutral {
+    background-color: var(--tawi-neutral);
+  }
+  
+  .border-tawi-primary {
+    border-color: var(--tawi-primary);
+  }
+  
+  .border-tawi-accent {
+    border-color: var(--tawi-accent);
+  }
+  
+  .hover\:bg-tawi-primary\/90:hover {
+    background-color: hsl(158, 36%, 17%, 0.9);
+  }
+  
+  .hover\:bg-tawi-accent\/90:hover {
+    background-color: hsl(43, 58%, 44%, 0.9);
+  }
+  
+  .hover\:text-tawi-primary:hover {
+    color: var(--tawi-primary);
+  }
+  
+  .hover\:text-tawi-accent:hover {
+    color: var(--tawi-accent);
+  }
+  
+  .focus\:ring-tawi-accent:focus {
+    --tw-ring-color: var(--tawi-accent);
+  }
+  
+  .focus\:ring-tawi-primary:focus {
+    --tw-ring-color: var(--tawi-primary);
+  }
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Ensure proper contrast for accessibility */
+.text-white\/80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.text-white\/90 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bg-white\/95 {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.bg-white\/98 {
+  background-color: rgba(255, 255, 255, 0.98);
+}

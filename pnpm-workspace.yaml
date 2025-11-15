@@ -1,0 +1,15 @@
+# pnpm workspace configuration for Tawi Group
+packages:
+  - '.'
+
+# Use shamefully-hoist to resolve dependency issues
+shamefully-hoist: true
+
+# Enable strict peer dependencies
+strict-peer-dependencies: false
+
+# Auto install peers
+auto-install-peers: true
+
+# Registry configuration
+registry: 'https://registry.npmjs.org/'
