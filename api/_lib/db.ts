@@ -1,31 +1,32 @@
 import 'dotenv/config';
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
-import { contacts, users, type User, type InsertUser, type Contact, type InsertContact } from "../../shared/schema.js";
-import { eq, desc } from "drizzle-orm";
+import { drizzle } from 'drizzle-orm/node-postgres';
+import pkg from 'pg';
+const { Pool } = pkg;
+import { contacts, users } from './schema.js'; // Changed from ../../shared/schema.js
+import type { User, InsertUser, Contact, InsertContact } from './schema.js'; // Changed
+import { eq, desc } from 'drizzle-orm';
 
-// Create a singleton connection pool
 let pool: Pool | null = null;
 
 function getPool() {
   if (!pool) {
     if (!process.env.DATABASE_URL) {
-      throw new Error("DATABASE_URL must be set");
+      throw new Error('DATABASE_URL must be set');
     }
 
     pool = new Pool({
       connectionString: process.env.DATABASE_URL,
-      max: 1, // Limit connections in serverless
+      max: 1,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 10000,
       ssl: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
 
-    pool.on('error', (err) => {
+    pool.on('error', (err: any) => {
       console.error('Unexpected pool error:', err);
-      pool = null; // Reset pool on error
+      pool = null;
     });
   }
 
@@ -39,13 +40,21 @@ export function getDb() {
 export const storage = {
   async getUser(id: number): Promise<User | undefined> {
     const db = getDb();
-    const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+    const result = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, id))
+      .limit(1);
     return result[0];
   },
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     const db = getDb();
-    const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+    const result = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, username))
+      .limit(1);
     return result[0];
   },
 
