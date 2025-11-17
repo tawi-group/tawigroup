@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { storage } from './_lib/db';
-import { emailService } from './_lib/email';
+import { storage } from './_lib/db.js';
+import { emailService } from './_lib/email.js';
 import { insertContactSchema } from '../shared/schema';
 import { z } from 'zod';
 

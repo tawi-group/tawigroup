@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
-import { contacts, users, type User, type InsertUser, type Contact, type InsertContact } from "../../shared/schema";
+import { contacts, users, type User, type InsertUser, type Contact, type InsertContact } from "../../shared/schema.js";
 import { eq, desc } from "drizzle-orm";
 
 // Create a singleton connection pool
