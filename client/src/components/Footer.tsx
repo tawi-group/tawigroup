@@ -175,7 +175,7 @@ export default function Footer() {
               Contact
             </h4>
             <ul className='space-y-2 text-white/80'>
-              <li><a href="tel:+25448136089">+254 48 136089</a></li>
+              <li><a href="tel:+254748136089">+254 748 136089</a></li>
               <li><a href="mailto:tawi.group.1@gmail.com">tawi.group.1@gmail.com</a></li>
               <li>OBC Kitengela, Namanga Road</li>
             </ul>
