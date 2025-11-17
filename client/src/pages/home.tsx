@@ -707,7 +707,7 @@ export default function Home() {
                     <div>
                       <div className='font-semibold text-white'>Phone</div>
                       <div className='text-white/80'>
-                        <a href='tel:+25448136089'>+254 48 136089</a>
+                        <a href='tel:+254748136089'>+254 748 136089</a>
                       </div>
                       <div className='text-white/60 text-sm mt-1'>
                         Mon-Fri 8AM-6PM EAT
