@@ -1,4 +1,5 @@
-import nodemailer from "nodemailer";
+import 'dotenv/config';
+import nodemailer from 'nodemailer';
 
 interface EmailOptions {
   to: string;
@@ -8,15 +9,21 @@ interface EmailOptions {
 
 class EmailService {
   private getTransporter() {
-    if (!process.env.EMAIL_HOST || !process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.warn("Email configuration missing. Email sending will be disabled.");
+    if (
+      !process.env.EMAIL_HOST ||
+      !process.env.EMAIL_USER ||
+      !process.env.EMAIL_PASSWORD
+    ) {
+      console.warn(
+        'Email configuration missing. Email sending will be disabled.'
+      );
       return null;
     }
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
-      port: parseInt(process.env.EMAIL_PORT || "587"),
-      secure: process.env.EMAIL_PORT === "465",
+      port: parseInt(process.env.EMAIL_PORT || '587'),
+      secure: process.env.EMAIL_PORT === '465',
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
@@ -26,9 +33,9 @@ class EmailService {
 
   async sendEmail(options: EmailOptions): Promise<boolean> {
     const transporter = this.getTransporter();
-    
+
     if (!transporter) {
-      console.error("Email transporter not initialized. Skipping email send.");
+      console.error('Email transporter not initialized. Skipping email send.');
       return false;
     }
 
@@ -42,7 +49,7 @@ class EmailService {
       console.log(`Email sent successfully to ${options.to}`);
       return true;
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error('Error sending email:', error);
       return false;
     }
   }
@@ -83,19 +90,25 @@ class EmailService {
                 <div class="label">Email:</div>
                 <div class="value">${contact.email}</div>
               </div>
-              ${contact.organization ? `
+              ${
+                contact.organization
+                  ? `
               <div class="field">
                 <div class="label">Organization:</div>
                 <div class="value">${contact.organization}</div>
               </div>
-              ` : ''}
+              `
+                  : ''
+              }
               <div class="field">
                 <div class="label">Message:</div>
                 <div class="value">${contact.message}</div>
               </div>
               <div class="field">
                 <div class="label">Newsletter Subscription:</div>
-                <div class="value">${contact.newsletter === 'true' ? 'Yes' : 'No'}</div>
+                <div class="value">${
+                  contact.newsletter === 'true' ? 'Yes' : 'No'
+                }</div>
               </div>
             </div>
             <div class="footer">
@@ -107,7 +120,7 @@ class EmailService {
     `;
 
     return await this.sendEmail({
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER || "",
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER || '',
       subject: `New Contact Form Submission from ${contact.name}`,
       html,
     });
@@ -151,7 +164,7 @@ class EmailService {
 
     return await this.sendEmail({
       to: contact.email,
-      subject: "Thank you for contacting Tawi Group",
+      subject: 'Thank you for contacting Tawi Group',
       html,
     });
   }
